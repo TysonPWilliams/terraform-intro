@@ -18,6 +18,11 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
       - run: terraform init
       - id: plan
-        run: terraform plan -no-color
+        run: terraform plan -no-color -out ./tfplan
+      - uses: actions/upload-artifact@v4
+        with:
+            name: my-artifact
+            path: path/to/artifact/world.txt
+            
       - name: terraform-output
         uses: dflook/terraform-output@v2.1.0
